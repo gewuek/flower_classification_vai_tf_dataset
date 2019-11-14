@@ -18,27 +18,19 @@ Please install the DNNDK 3.1 develop environment according to https://www.xilinx
 Make sure you can run DNNDK examples.
 
 1. Download kaggle flower dataset from https://www.kaggle.com/alxmamaev/flowers-recognition <br />
-2. unzip the folder and copy the files into ```flower_classification_dnndk_v1/x86/flowers``` folder. So that the directory would like below: <br />
+2. unzip the folder and copy the files into ```flower_classification_dnndk_v2/x86/flowers``` folder. So that the directory would like below: <br />
 ![directory.PNG](/pic_for_readme/directory.PNG)
 
-3. Navigate into the ```flower_classification_dnndk_v1/x86/``` folder <br />
-4. Load images and labels into dataset <br />
-```python3 ./load_data.py``` <br />
-5. Train data <br />
-```python3 ./train_data.py``` <br />
-6. Evaluate the trained model(Opitional) <br />
-```python3 ./evaluate_trained_model.py``` <br />
-7. Freeze the model <br />
+3. Navigate into the ```flower_classification_dnndk_v2/x86/``` folder <br />
+4. Train data into model <br />
+```python3 ./train_model.py``` <br />
+5. Freeze the model <br />
 ```python3 ./freeze_model.py``` <br />
-8. Evaluate the frozen model(Opitional) <br />
-```python3 ./evaluate_frozen_model.py``` <br />
-9. Quantize the graph, using ```chmod u+x ./decent_q.sh``` if necessary <br />
+6. Quantize the graph, using ```chmod u+x ./decent_q.sh``` if necessary <br />
 ```./decent_q.sh``` <br />
-10. Evaluate quantized graph (Optional) <br />
-```python3 ./evaluate_quantized_graph.py``` <br />
-11. Compile the quantized model into elf using DNNC, use ```chmod u+x ./dnnc.sh``` if necessary <br />
+7. Compile the quantized model into elf using DNNC, use ```chmod u+x ./dnnc.sh``` if necessary <br />
 ```./dnnc.sh``` <br />
-12. Now you should get the ELF file at ```flower_classification_v1/x86/flower_classification/dpu_flower_classification_0.elf```. Copy the file into the ```flower_classification_v1/arm/flower_classification/model``` for further usage <br />
+12. Now you should get the ELF file at ```flower_classification_v2/x86/flower_classification/dpu_flower_classification_0.elf```. Copy the file into the ```flower_classification_v2/arm/flower_classification/model``` for further usage <br />
 
 ### Test on ZCU102 board
 For build and deploy the example on ZCU102 board, there are two additional requirement <br />
