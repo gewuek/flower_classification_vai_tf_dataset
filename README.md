@@ -1,7 +1,7 @@
-# flower_classification_dnndk_v1
+# flower_classification_dnndk_v2
 This is a simple example about how to train a ConNet model from labeled dataset with TensorFlow and then use DNNDK tools to deploy the model into ZCU102 board. <br /><br />
 To make it easier I just make my model ovefit the dataset. All the training/validation/calibration data are just from the same dataset. <br /> 
-And I just use the numpy array as data input and OpenCV functions to open images during model training. I would try to create a new repository to deliver an example using tf.data.Dataset later.<br />
+And this time I use the tf.data.Dataset API to handle data input and Tensorflow image functions to open images during model training. So that the input function needs to be rewritten and also RGB2BGR tansfer need to be done for both calibration and deployment.<br />
 The dataset is downloaded from: https://www.kaggle.com/alxmamaev/flowers-recognition <br />
 And you may find the dataset from Keras tutorial: https://www.kaggle.com/alxmamaev/flowers-recognition <br />
 The ARM deploy code is modified from the DNNDK resnet50 example code. <br />
