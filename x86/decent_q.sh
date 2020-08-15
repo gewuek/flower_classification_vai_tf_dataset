@@ -1,4 +1,4 @@
-decent_q quantize \
+vai_q_tensorflow quantize \
 	--input_frozen_graph ./frozen_graph.pb \
 	--input_nodes conv2d_input \
 	--input_shapes ?,128,128,3 \

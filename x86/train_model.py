@@ -37,13 +37,19 @@ for flower_path in flower_pathes:
 		img_index = img_index + 1
 		if os.path.isfile(img_path):
 			if (i < 500):
-				img = cv2.imread(img_path)
-				res = cv2.resize(img,(128, 128), interpolation = cv2.INTER_CUBIC)
-				res_imgpath = resize_img + str(img_index).zfill(8) + '.jpg'
-				cv2.imwrite(res_imgpath, res)
-				f.write(res_imgpath + " " + str(label) +"\n")
-			imagepaths.append(img_path)
-			labels.append([label])
+				try:
+					img = cv2.imread(img_path)
+					res = cv2.resize(img,(128, 128), interpolation = cv2.INTER_CUBIC)
+					res_imgpath = resize_img + str(img_index).zfill(8) + '.jpg'
+					cv2.imwrite(res_imgpath, res)
+					f.write(res_imgpath + " " + str(label) +"\n")
+					imagepaths.append(img_path)
+					labels.append([label])
+				except Exception as e:
+					print("Not image file") #pass
+					print(img_path)
+					os.remove(img_path)
+					print("Delete the file")
 	#label start with 0
 	label += 1
 
