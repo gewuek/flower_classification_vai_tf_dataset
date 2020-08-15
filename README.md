@@ -1,12 +1,12 @@
 # flower_classification_dnndk_v2
-This is a simple example about how to train a ConNet model from labeled dataset with TensorFlow and then use DNNDK tools to deploy the model into ZCU102 board. <br /><br />
+This is a simple example about how to train a ConNet model from labeled dataset with TensorFlow and then use Vitis AI tools to deploy the model into ZCU102 board. <br /><br />
 To make it easier I just make my model ovefit the dataset. All the training/validation/calibration data are just from the same dataset. <br /> 
-And this time I use the tf.data.Dataset API to handle data input and Tensorflow image functions to open images during model training. So that the input function needs to be rewritten and also RGB2BGR tansfer need to be done for both calibration and deployment. Please find a easy version using OpenCV and numpy array here: [flower_classification_dnndk_v1](https://github.com/gewuek/flower_classification_dnndk_v1.git)<br />
+And this time I use the tf.data.Dataset API to handle data input and Tensorflow image functions to open images during model training. So that the input function needs to be rewritten and also RGB2BGR tansfer need to be done for both calibration and deployment. Please find a easy version using OpenCV and numpy array here: [flower_classification_vai_tf_numpy_array](https://github.com/gewuek/flower_classification_vai_tf_numpy_array)<br />
 The dataset is downloaded from: https://www.kaggle.com/alxmamaev/flowers-recognition <br />
 And you may find the dataset from Keras tutorial: https://www.kaggle.com/alxmamaev/flowers-recognition <br />
 The ARM deploy code is modified from the DNNDK resnet50 example code. <br />
 
-The whole design is trained and deployed using Ubuntu 18.04 + TensorFlow 1.12 + DNNDK 3.1 + PetaLinux 2019.1. <br />
+The whole design is trained and deployed using Ubuntu 18.04 + Vitis AI 1.2 + TensorFlow 1.15 + PetaLinux 2020.1. <br />
 <br />
 
 ***To be notices:*** Although this design uses Xilinx tools to deploy design on Xilinx developboard this is just personal release. No gurantee can be made here. :-) Pease feel free to contact me or post your questions on:  <br />
@@ -35,15 +35,16 @@ Make sure you can run DNNDK examples.
 ### Test on ZCU102 board
 For build and deploy the example on ZCU102 board, there are two additional requirement <br />
 1. DNNDK Libs <br />
-a) If you are using the [DPU Intergration flow](https://github.com/Xilinx/Edge-AI-Platform-Tutorials/tree/master/docs/DPU-Integration) after you enable the dnndk user package in PetaLinux the libs would be automatically installed into the rootfs. <br /><br />
-b) Otherwise you can try to install the libs according to [DNNDK user guide](https://www.xilinx.com/support/documentation/sw_manuals/ai_inference/v1_6/ug1327-dnndk-user-guide.pdf) page.21 ~ page.22 <br />
-
+a) Refer to [DNNDK example](https://github.com/Xilinx/Vitis-AI/tree/v1.2/mpsoc) to set up the on board DNNDK libs. <br /><br />
+b) Refer to [Vitis Ai Library guide](https://github.com/Xilinx/Vitis-AI/tree/v1.2/Vitis-AI-Library) to set up the on board VAi libs. <br />
+c) I was told that the Vitis AI Libs are optional if you are using pure DNNDK libs, but don't have time to have a try.<br />
+<br />
 2. Compile Environment <br />
-a) If you are using [prebuild DPU TRD image](https://www.xilinx.com/member/forms/download/zcu102-image-license-xef.html?filename=petalinux-user-image-zcu102-zynqmp-sd-20190802.img.gz) or if you enable the compile tool chain in PetaLinux package: ```petalinux package groups -> packagegroup-petalinux-self-hosted```the compiling environment is preinstalled at the image. So you just need to copy the ```flower_classification_v1/arm/flower_classification``` folder into the ZCU102 board(SD card or DDR) and when the board boot up go to the flower_classification folder and run ***make*** to compile the application. <br /><br />
-b) If you work with [DPU Intergration flow](https://github.com/Xilinx/Edge-AI-Platform-Tutorials/tree/master/docs/DPU-Integration). Then I would suggest you to use the SDK cross compile flow mentioned in that webpage and copy the compiled ELF into ```flower_classification``` and run the ELF directly. <br />
-
-The running result on ZCU102 would like below:
-![classification_flower.PNG](/pic_for_readme/classification_flower.PNG)
+a) If you are using [zcu102_vai_1.2 image](https://www.xilinx.com/bin/public/openDownload?filename=xilinx-zcu102-dpu-v2020.1-v1.2.0.img.gz) the compiling environment is preinstalled at the image. So you just need to copy the ```flower_classification_v1/arm/flower_classification``` folder into the ZCU102 board(SD card or DDR) and when the board boot up go to the flower_classification folder and run ***make*** to compile the application. <br /><br />
+b) For custom platform please refer to the configuration from[Vitis AI custom platform creation flow](https://github.com/gewuek/vitis_ai_custom_platform_flow)(If it is not up-to-date please try with this [VAI 1.2 tmp rep](https://github.com/gewuek/vitis_ai_custom_platform_v1.2_tmp)) to configure the rootfs. Both the Vitis AI GUI compilation and on board compilation should work. <br />
+<br />
+The running result on ZCU102 would like below:<br />
+![classification_flower.PNG](/pic_for_readme/classification_flower.PNG)<br />
 
 ### Reference
 
