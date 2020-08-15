@@ -14,8 +14,8 @@ https://forums.xilinx.com/t5/Machine-Learning/bd-p/Deephi <br />
 
 
 ### TensorFlow Training and DNNDK Quantization Flow
-Please install the DNNDK 3.1 develop environment according to https://www.xilinx.com/support/documentation/sw_manuals/ai_inference/v1_6/ug1327-dnndk-user-guide.pdf before starting the custom model flow.
-Make sure you can run DNNDK examples.
+Please install the Vitis AI 1.2 according to https://github.com/Xilinx/Vitis-AI/ before starting the custom model flow.<br />
+Make sure you can run Vitis AI DNNDK examples.<br />
 
 1. Download kaggle flower dataset from https://www.kaggle.com/alxmamaev/flowers-recognition <br />
 2. unzip the folder and copy the files into ```flower_classification_vai_tf_dataset/x86/flowers``` folder. So that the directory would like below: <br />
